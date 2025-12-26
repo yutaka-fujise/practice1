@@ -1,0 +1,152 @@
+* {
+    box-sizing: border-box;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #fff;
+    color: #5a4a42;
+}
+
+.header {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.container {
+    width: 700px;
+    margin: 40px auto;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contact-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.required {
+    color: #c77;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #f7f7f7;
+}
+
+.name-group {
+    display: flex;
+    gap: 20px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 30px;
+}
+
+.tel-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tel-group input {
+    width: 80px;
+    text-align: center;
+}
+
+.form-button {
+    text-align: center;
+    margin-top: 40px;
+}
+
+button {
+    background: #7a6a5f;
+    color: #fff;
+    border: none;
+    padding: 12px 40px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.confirm-table {
+    width: 100%;
+    border: 1px solid #e0d6cc;
+}
+
+.row {
+    display: flex;
+    border-bottom: 1px solid #e0d6cc;
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.label {
+    width: 30%;
+    background: #b8a99a;
+    color: #fff;
+    padding: 15px;
+    font-size: 14px;
+}
+
+.value {
+    width: 70%;
+    padding: 15px;
+    background: #fff;
+    font-size: 14px;
+}
+
+.confirm-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.btn-submit {
+    background: #7a6a5f;
+    color: #fff;
+    border: none;
+    padding: 12px 40px;
+    cursor: pointer;
+}
+
+.btn-back {
+    background: none;
+    border: none;
+    color: #7a6a5f;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-submit:hover,
+.btn-back:hover {
+    opacity: 0.8;
+}

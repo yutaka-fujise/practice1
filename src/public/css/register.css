@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f5efe9;
+    color: #5a4a42;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #fff;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.login-link {
+    text-decoration: none;
+    color: #a38c7a;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+}
+
+.container {
+    width: 100%;
+    margin-top: 60px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 20px;
+}
+
+.card {
+    width: 400px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 6px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #f7f7f7;
+}
+
+.form-button {
+    text-align: center;
+    margin-top: 30px;
+}
+
+button {
+    background: #7a6a5f;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
