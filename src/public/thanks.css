@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+body {
+    margin: 0;
+    color: #5a4a42;
+}
+
+.header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.container {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.title {
+    margin-bottom: 30px;
+}
+
+.message {
+    margin-bottom: 40px;
+    line-height: 1.8;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #7a6a5f;
+    color: #fff;
+    text-decoration: none;
+}

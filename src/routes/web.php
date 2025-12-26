@@ -1,33 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Category;
+use App\Http\Controllers\ContactController;
 
-Route::get('/', function () {
-    $categories = collect([
-        (object)['id' => 1, 'content' => '商品の交換について'],
-        (object)['id' => 2, 'content' => '不具合について'],
-    ]);
+/*
+|--------------------------------------------------------------------------
+| ユーザー側（お問い合わせ）
+|--------------------------------------------------------------------------
+*/
 
-    return view('index', compact('categories'));
-});
+// 入力画面
+Route::get('/', [ContactController::class, 'index']);
 
-Route::get('/confirm', function () {
-    return view('confirm');
-});
+// 確認画面
+Route::post('/confirm', [ContactController::class, 'confirm']);
 
-Route::get('/thanks', function () {
-    return view('thanks');
-});
-
-Route::get('/register', function () {
-    return view('register');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/admin', function () {
-    return view('admin');
-});
+// 送信 → サンクス
+Route::post('/thanks', [ContactController::class, 'store']);
