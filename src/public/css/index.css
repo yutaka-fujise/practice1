@@ -93,10 +93,15 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    width: 100%;
 }
 
 .tel-box input {
     width: 80px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #f7f7f7;
 }
 
 textarea {
@@ -114,4 +119,15 @@ textarea {
     background: #7a6a5f;
     color: #fff;
     cursor: pointer;
+}
+
+.form-input {
+    width: 100%;
+}
+
+.error {
+    color: #ff4b4b;
+    font-size: 13px;
+    margin-top: 4px;
+    line-height: 1.4;
 }

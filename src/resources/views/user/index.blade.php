@@ -25,8 +25,18 @@
     <div class="form-row">
       <label>お名前<span>※</span></label>
       <div class="name-box">
-        <input type="text" placeholder="例）山田">
-        <input type="text" placeholder="例）太郎">
+        <div class="form-input">
+        <input type="text" name="last_name" placeholder="例）山田">
+        @error('last_name')
+          <p class="error">{{ $message }}</p>
+        @enderror
+        </div>
+        <div class="form-input">
+        <input type="text" name="first_name" placeholder="例）太郎">
+        @error('first_name')
+          <p class="error">{{ $message }}</p>
+        @enderror
+        </div>
       </div>
     </div>
 
@@ -34,53 +44,84 @@
         <label>性別<span>※</span></label>
             <div class="radio-box">
         <label class="radio-item">
-            <input type="radio" name="gender"> 男性
+            <input type="radio" name="gender" value="男性"> 男性</label>
+        <label class="radio-item">
+            <input type="radio" name="gender" value="女性"> 女性
         </label>
         <label class="radio-item">
-            <input type="radio" name="gender"> 女性
+            <input type="radio" name="gender" value="その他"> その他
         </label>
-        <label class="radio-item">
-            <input type="radio" name="gender"> その他
-        </label>
-            </div>
-        </div>
+        @error('gender')
+          <p class="error">{{ $message }}</p>
+        @enderror
+          </div>
+          </div>
+  </div>
 
     <div class="form-row">
       <label>メールアドレス<span>※</span></label>
-      <input type="email" placeholder="例）test@example.com">
+        <div class="form-input">
+          <div class="form-input">
+          <input type="email" name="email" placeholder="例）test@example.com">
+          @error('email')
+            <p class="error">{{ $message }}</p>
+          @enderror
+          </div>
+        </div>
     </div>
 
+        <div class="form-row">
+            <label>電話番号<span>※</span></label>
+          <div class="tel-box">
+            <input type="text" name="tel1">
+            <span>-</span>
+            <input type="text" name="tel2">
+            <span>-</span>
+            <input type="text" name="tel3">
+            @error('tel1')
+            <p class="error">{{ $message }}</p>
+            @enderror
+          </div>
+        </div>
+
     <div class="form-row">
-      <label>電話番号<span>※</span></label>
-      <div class="tel-box">
-        <input type="text">
-        <span>-</span>
-        <input type="text">
-        <span>-</span>
-        <input type="text">
+      <label>住所<span>※</span></label>
+      <div class="form-input">
+      <input type="text" name="address" placeholder="例）東京都渋谷区千駄ヶ谷1-2-3">
+      @error('address')
+        <p class="error">{{ $message }}</p>
+      @enderror
       </div>
     </div>
 
     <div class="form-row">
-      <label>住所<span>※</span></label>
-      <input type="text" placeholder="例）東京都渋谷区千駄ヶ谷1-2-3">
-    </div>
-
-    <div class="form-row">
       <label>建物名</label>
-      <input type="text" placeholder="例）千駄ヶ谷マンション101">
+      <input type="text" name="building" placeholder="例）千駄ヶ谷マンション101">
     </div>
 
     <div class="form-row">
-      <label>お問い合わせの種類<span>※</span></label>
-      <select>
-        <option>選択してください</option>
-      </select>
+        <label>お問い合わせの種類<span>※</span></label>
+      <div class="form-input">
+        <select name="category">
+        <option value="">選択してください</option>
+        <option value="商品の交換について">商品の交換について</option>
+        <option value="不具合について">不具合について</option>
+        <option value="その他">その他</option>
+        </select>
+        @error('category')
+          <p class="error">{{ $message }}</p>
+        @enderror
+      </div>
     </div>
 
     <div class="form-row">
       <label>お問い合わせ内容<span>※</span></label>
-      <textarea placeholder="お問い合わせ内容をご記載ください"></textarea>
+      <div class="form-input">
+        <textarea name="detail" placeholder="お問い合わせ内容をご記載ください"></textarea>
+        @error('detail')
+          <p class="error">{{ $message }}</p>
+        @enderror
+      </div>
     </div>
 
     <div class="form-button">

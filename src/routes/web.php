@@ -14,6 +14,3 @@ Route::get('/', [ContactController::class, 'index']);
 
 // 確認画面
 Route::post('/confirm', [ContactController::class, 'confirm']);
-
-// 送信 → サンクス
-Route::post('/thanks', [ContactController::class, 'store']);
