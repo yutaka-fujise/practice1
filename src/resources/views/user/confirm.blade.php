@@ -79,7 +79,19 @@
     </form>
 
     <!-- 修正 -->
-    <form action="/" method="GET">
+    <form action="{{ route('contact.return') }}" method="post">
+      @csrf
+        <input type="hidden" name="last_name" value="{{ $inputs['last_name'] }}">
+        <input type="hidden" name="first_name" value="{{ $inputs['first_name'] }}">
+        <input type="hidden" name="gender" value="{{ $inputs['gender'] }}">
+        <input type="hidden" name="email" value="{{ $inputs['email'] }}">
+        <input type="hidden" name="tel1" value="{{ $inputs['tel1'] }}">
+        <input type="hidden" name="tel2" value="{{ $inputs['tel2'] }}">
+        <input type="hidden" name="tel3" value="{{ $inputs['tel3'] }}">
+        <input type="hidden" name="address" value="{{ $inputs['address'] }}">
+        <input type="hidden" name="building" value="{{ $inputs['building'] }}">
+        <input type="hidden" name="category" value="{{ $inputs['category'] }}">
+        <input type="hidden" name="detail" value="{{ $inputs['detail'] }}">
       <button type="submit" class="btn-back">修正</button>
     </form>
 

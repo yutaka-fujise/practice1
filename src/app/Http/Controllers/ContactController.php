@@ -14,7 +14,12 @@ class ContactController extends Controller
 
     public function confirm(ContactRequest $request)
     {
-        $inputs = $request->all();
-        return view('confirm', compact('inputs'));
+    $inputs = $request->all();
+    return view('user.confirm', compact('inputs'));
+    }
+
+    public function return(Request $request)
+    {
+    return redirect('/')->withInput($request->except('_token'));
     }
 }

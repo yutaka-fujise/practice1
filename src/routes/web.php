@@ -14,3 +14,5 @@ Route::get('/', [ContactController::class, 'index']);
 
 // 確認画面
 Route::post('/confirm', [ContactController::class, 'confirm']);
+
+Route::post('/return', [ContactController::class, 'return'])->name('contact.return');
