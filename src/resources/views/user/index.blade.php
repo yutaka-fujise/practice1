@@ -56,17 +56,15 @@
         @enderror
           </div>
     </div>
-  </div
+    </div>
 
     <div class="form-row">
       <label>メールアドレス<span>※</span></label>
         <div class="form-input">
-          <div class="form-input">
           <input type="email" name="email" placeholder="例）test@example.com" value="{{ old('email') }}">
           @error('email')
             <p class="error">{{ $message }}</p>
           @enderror
-          </div>
         </div>
     </div>
 

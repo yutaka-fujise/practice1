@@ -131,3 +131,79 @@ textarea {
     margin-top: 4px;
     line-height: 1.4;
 }
+
+/* =========================
+   Confirm Page
+========================= */
+
+.confirm-table {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    background: #fff;
+}
+
+.confirm-table .row {
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+
+.confirm-table .row:last-child {
+    border-bottom: none;
+}
+
+.confirm-table .label {
+    width: 260px;
+    padding: 16px 18px;
+    background: #b9aa9f;
+    /* 左の薄茶 */
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.confirm-table .value {
+    flex: 1;
+    padding: 16px 18px;
+    background: #fff;
+    color: #5a4a42;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    line-height: 1.7;
+}
+
+/* お問い合わせ内容だけは上に寄せて読みやすく */
+.confirm-table .row:last-child .value {
+    align-items: flex-start;
+}
+
+/* ボタン */
+.confirm-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 30px;
+}
+
+.btn-submit,
+.btn-back {
+    min-width: 120px;
+    padding: 10px 0;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-submit {
+    background: #7a6a5f;
+    color: #fff;
+}
+
+.btn-back {
+    background: #fff;
+    color: #7a6a5f;
+    border: 1px solid #7a6a5f;
+}
