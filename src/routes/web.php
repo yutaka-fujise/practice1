@@ -16,3 +16,5 @@ Route::get('/', [ContactController::class, 'index']);
 Route::post('/confirm', [ContactController::class, 'confirm']);
 
 Route::post('/return', [ContactController::class, 'return'])->name('contact.return');
+
+Route::post('/thanks', [ContactController::class, 'store'])->name('contact.store');

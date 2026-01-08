@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
@@ -21,5 +22,22 @@ class ContactController extends Controller
     public function return(Request $request)
     {
     return redirect('/')->withInput($request->except('_token'));
+    }
+
+    public function store(Request $request)
+    {
+    Contact::create([
+        'last_name'  => $request->last_name,
+        'first_name' => $request->first_name,
+        'gender'     => $request->gender,
+        'email'      => $request->email,
+        'tel'        => $request->tel1 . '-' . $request->tel2 . '-' . $request->tel3,
+        'address'    => $request->address,
+        'building'   => $request->building,
+        'category'   => $request->category,
+        'detail'     => $request->detail,
+    ]);
+
+    return view('user.thanks');
     }
 }

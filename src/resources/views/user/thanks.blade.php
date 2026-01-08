@@ -12,19 +12,10 @@
 
 <body>
 
-<header class="header">
-  <h1 class="logo">FashionablyLate</h1>
-</header>
-
 <main class="container">
-  <h2 class="title">お問い合わせありがとうございました</h2>
+  <h1 class="title">お問い合わせありがとうございました</h1>
 
-  <p class="message">
-    お問い合わせ内容を受け付けました。<br>
-    内容を確認のうえ、担当者よりご連絡いたします。
-  </p>
-
-  <a href="/" class="btn-back">トップへ戻る</a>
+  <a href="/" class="btn-back">HOME</a>
 </main>
 
 </body>
