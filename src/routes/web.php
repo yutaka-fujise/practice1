@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,8 @@ Route::post('/confirm', [ContactController::class, 'confirm']);
 Route::post('/return', [ContactController::class, 'return'])->name('contact.return');
 
 Route::post('/thanks', [ContactController::class, 'store'])->name('contact.store');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/contacts', [AdminContactController::class, 'index'])
+        ->name('admin.contacts.index');
+});
