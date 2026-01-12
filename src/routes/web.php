@@ -24,3 +24,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/contacts', [AdminContactController::class, 'index'])
         ->name('admin.contacts.index');
 });
+

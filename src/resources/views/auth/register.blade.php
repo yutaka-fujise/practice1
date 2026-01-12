@@ -22,6 +22,14 @@
         <div class="card">
             <form action="/register" method="POST">
                 @csrf
+                
+            @if ($errors->any())
+                <ul class="error-list">
+                 @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+                </ul>
+            @endif
 
                 <div class="form-group">
                     <label>お名前</label>
@@ -36,6 +44,10 @@
                 <div class="form-group">
                     <label>パスワード</label>
                     <input type="password" name="password" placeholder="例：coachtech06">
+                </div>
+                <div class="form-group">
+                    <label>パスワード（確認）</label>
+                        <input type="password" name="password_confirmation" placeholder="もう一度入力">
                 </div>
 
                 <div class="form-button">

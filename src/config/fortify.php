@@ -156,5 +156,9 @@ return [
             // 'window' => 0,
         ]),
     ],
+    'redirects' => [
+    // 既にあるやつはそのままでOK
+    'logout' => '/login',
+    ],
 
 ];

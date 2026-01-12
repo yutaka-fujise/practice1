@@ -14,7 +14,11 @@
 
 <header class="header">
   <h1 class="logo">FashionablyLate</h1>
-  <a href="/logout" class="logout-link">logout</a>
+
+  <form method="POST" action="{{ route('logout') }}" class="logout-form">
+    @csrf
+    <button type="submit" class="logout-button">logout</button>
+  </form>
 </header>
 
 <main class="container">
