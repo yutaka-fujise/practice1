@@ -25,25 +25,26 @@
   <h2 class="title">Admin</h2>
 
   <!-- 検索 -->
-  <form class="search-area">
-    <input type="text" placeholder="名前やメールアドレスを入力してください">
+  <form action="{{ route('admin.index') }}" method="GET" class="search-area">
+    <input
+      type="text"
+      name="keyword"
+      value="{{ request('keyword') }}"
+      placeholder="名前やメールアドレスを入力してください"
+    >
 
-    <select>
-      <option>性別</option>
-      <option>男性</option>
-      <option>女性</option>
-      <option>その他</option>
+    <select name="gender">
+      <option value="">性別</option>
+      <option value="1" @selected(request('gender')=='1')>男性</option>
+      <option value="2" @selected(request('gender')=='2')>女性</option>
+      <option value="3" @selected(request('gender')=='3')>その他</option>
     </select>
 
-    <select>
-      <option>お問い合わせの種類</option>
-      <option>商品の交換について</option>
-    </select>
+    <input type="date" name="date_from" value="{{ request('date_from') }}">
+    <input type="date" name="date_to" value="{{ request('date_to') }}">
 
-    <input type="date">
-
-    <button class="btn-search">検索</button>
-    <button class="btn-reset" type="button">リセット</button>
+    <button class="btn-search" type="submit">検索</button>
+    <a href="{{ route('admin.index') }}" class="btn-reset">リセット</a>
   </form>
 
   <div class="export-area">
@@ -61,32 +62,42 @@
         <th></th>
       </tr>
     </thead>
+
     <tbody>
-      <tr>
-        <td>山田 太郎</td>
-        <td>男性</td>
-        <td>test@example.com</td>
-        <td>商品の交換について</td>
-        <td><button class="btn-detail">詳細</button></td>
-      </tr>
-      <tr>
-        <td>山田 太郎</td>
-        <td>男性</td>
-        <td>test@example.com</td>
-        <td>商品の交換について</td>
-        <td><button class="btn-detail">詳細</button></td>
-      </tr>
+      @forelse($contacts as $contact)
+        <tr>
+          <td>{{ $contact->last_name }} {{ $contact->first_name }}</td>
+
+          <td>
+            @if($contact->gender == 1)
+              男性
+            @elseif($contact->gender == 2)
+              女性
+            @else
+              その他
+            @endif
+          </td>
+
+          <td>{{ $contact->email }}</td>
+
+          <td>
+            {{ $contact->category->content ?? '' }}
+          </td>
+
+          <td><button class="btn-detail" type="button">詳細</button></td>
+        </tr>
+      @empty
+        <tr>
+          <td colspan="5" style="text-align:center; padding: 20px;">
+            該当するデータがありません
+          </td>
+        </tr>
+      @endforelse
     </tbody>
   </table>
 
   <div class="pagination">
-    <span>&lt;</span>
-    <span class="active">1</span>
-    <span>2</span>
-    <span>3</span>
-    <span>4</span>
-    <span>5</span>
-    <span>&gt;</span>
+    {{ $contacts->links() }}
   </div>
 </main>
 

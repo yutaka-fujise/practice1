@@ -21,7 +21,11 @@ Route::post('/return', [ContactController::class, 'return'])->name('contact.retu
 Route::post('/thanks', [ContactController::class, 'store'])->name('contact.store');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/admin/contacts', [AdminContactController::class, 'index'])
+    // 管理画面入口（おすすめ）
+    Route::get('/admin', [AdminContactController::class, 'index'])
+        ->name('admin.index');
+
+Route::get('/admin/contacts', [AdminContactController::class, 'index'])
         ->name('admin.contacts.index');
 });
 
