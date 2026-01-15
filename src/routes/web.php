@@ -29,3 +29,7 @@ Route::get('/admin/contacts', [AdminContactController::class, 'index'])
         ->name('admin.contacts.index');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/contacts/{id}', [AdminContactController::class, 'show'])
+        ->name('admin.contacts.show');
+});

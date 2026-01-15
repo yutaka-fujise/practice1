@@ -27,15 +27,15 @@ class ContactController extends Controller
     public function store(Request $request)
     {
     Contact::create([
-        'last_name'  => $request->last_name,
-        'first_name' => $request->first_name,
-        'gender'     => $request->gender,
-        'email'      => $request->email,
-        'tel'        => $request->tel1 . '-' . $request->tel2 . '-' . $request->tel3,
-        'address'    => $request->address,
-        'building'   => $request->building,
-        'category'   => $request->category,
-        'detail'     => $request->detail,
+        'last_name'   => $request->last_name,
+        'first_name'  => $request->first_name,
+        'gender'      => $request->gender,
+        'email'       => $request->email,
+        'tel'         => $request->tel1 . '-' . $request->tel2 . '-' . $request->tel3,
+        'address'     => $request->address,
+        'building'    => $request->building,
+        'category_id' => $request->category,   // ★ここだけ変更（category → category_id）
+        'detail'      => $request->detail,
     ]);
 
     return view('user.thanks');

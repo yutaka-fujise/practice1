@@ -46,16 +46,15 @@
         <label class="radio-item">
             <input type="radio" name="gender" value="1" {{ old('gender') == '1' ? 'checked' : '' }}> 男性</label>
         <label class="radio-item">
-            <input type="radio" name="gender" value="1" {{ old('gender') == '2' ? 'checked' : '' }}> 女性
+            <input type="radio" name="gender" value="2" {{ old('gender') == '2' ? 'checked' : '' }}> 女性
         </label>
         <label class="radio-item">
-            <input type="radio" name="gender" value="1" {{ old('gender') == '3' ? 'checked' : '' }}> その他
+            <input type="radio" name="gender" value="3" {{ old('gender') == '3' ? 'checked' : '' }}> その他
         </label>
         @error('gender')
           <p class="error">{{ $message }}</p>
         @enderror
-          </div>
-    </div>
+      </div>
     </div>
 
     <div class="form-row">
@@ -97,20 +96,22 @@
       <input type="text" name="building" placeholder="例）千駄ヶ谷マンション101"value="{{ old('building') }}">
     </div>
 
-    <div class="form-row">
-        <label>お問い合わせの種類<span>※</span></label>
-      <div class="form-input">
-        <select name="category">
-        <option value="">選択してください</option>
-        <option value="商品の交換について" {{ old('category') == '商品の交換について' ? 'selected' : '' }}>商品の交換について</option>
-        <option value="不具合について" {{ old('category') == '不具合について' ? 'selected' : '' }}>不具合について</option>
-        <option value="その他">その他</option>
-        </select>
-        @error('category')
-          <p class="error">{{ $message }}</p>
-        @enderror
-      </div>
-    </div>
+   <div class="form-row">
+  <label>お問い合わせの種類<span>※</span></label>
+
+  <div class="form-input">
+    <select name="category">
+      <option value="">選択してください</option>
+      <option value="1" {{ old('category') == '1' ? 'selected' : '' }}>商品の交換について</option>
+      <option value="2" {{ old('category') == '2' ? 'selected' : '' }}>不具合について</option>
+      <option value="5" {{ old('category') == '5' ? 'selected' : '' }}>その他</option>
+    </select>
+
+    @error('category')
+      <p class="error">{{ $message }}</p>
+    @enderror
+  </div>
+</div>
 
     <div class="form-row">
       <label>お問い合わせ内容<span>※</span></label>
