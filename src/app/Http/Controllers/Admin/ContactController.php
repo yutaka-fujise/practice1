@@ -49,4 +49,11 @@ class ContactController extends Controller
         $contact = Contact::findOrFail($id);
         return view('admin.contacts.show', compact('contact'));
     }
+
+    public function destroy(Contact $contact)
+    {
+        $contact->delete();
+
+        return redirect('/admin')->with('message', '削除しました');
+    }
 }

@@ -33,3 +33,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/contacts/{id}', [AdminContactController::class, 'show'])
         ->name('admin.contacts.show');
 });
+
+Route::delete('/admin/{contact}', [ContactController::class, 'destroy'])->name('admin.destroy');

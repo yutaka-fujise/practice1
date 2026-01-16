@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
+use App\Models\Category;
 
 class ContactController extends Controller
 {
@@ -15,13 +16,16 @@ class ContactController extends Controller
 
     public function confirm(ContactRequest $request)
     {
-    $inputs = $request->all();
-    return view('user.confirm', compact('inputs'));
+        $inputs = $request->all();
+
+        $categories = Category::pluck('content', 'id'); // [id => content]
+
+        return view('user.confirm', compact('inputs', 'categories'));
     }
 
     public function return(Request $request)
     {
-    return redirect('/')->withInput($request->except('_token'));
+        return redirect('/')->withInput($request->except('_token'));
     }
 
     public function store(Request $request)
@@ -39,5 +43,12 @@ class ContactController extends Controller
     ]);
 
     return view('user.thanks');
+    }
+
+    public function destroy(Contact $contact)
+    {
+        $contact->delete();
+
+        return redirect()->route('admin.index')->with('message', '削除しました');
     }
 }

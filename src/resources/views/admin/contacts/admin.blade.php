@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
   <!-- =========================
         Header
   ========================== -->
@@ -35,17 +34,17 @@
         name="keyword"
         value="{{ request('keyword') }}"
         placeholder="名前やメールアドレスを入力してください"
-      >
+      />
 
       <select name="gender">
         <option value="">性別</option>
-        <option value="1" @selected(request('gender')=='1')>男性</option>
-        <option value="2" @selected(request('gender')=='2')>女性</option>
-        <option value="3" @selected(request('gender')=='3')>その他</option>
+        <option value="1" @selected(request('gender') == '1')>男性</option>
+        <option value="2" @selected(request('gender') == '2')>女性</option>
+        <option value="3" @selected(request('gender') == '3')>その他</option>
       </select>
 
-      <input type="date" name="date_from" value="{{ request('date_from') }}">
-      <input type="date" name="date_to" value="{{ request('date_to') }}">
+      <input type="date" name="date_from" value="{{ request('date_from') }}" />
+      <input type="date" name="date_to" value="{{ request('date_to') }}" />
 
       <button class="btn-search" type="submit">検索</button>
       <a href="{{ route('admin.index') }}" class="btn-reset">リセット</a>
@@ -55,7 +54,7 @@
           Export
     ========================== -->
     <div class="export-area">
-      <button class="btn-export">エクスポート</button>
+      <button class="btn-export" type="button">エクスポート</button>
     </div>
 
     <!-- =========================
@@ -74,23 +73,15 @@
 
       <tbody>
         @forelse($contacts as $contact)
+          @php
+            $genderLabel = $contact->gender == 1 ? '男性' : ($contact->gender == 2 ? '女性' : 'その他');
+          @endphp
+
           <tr>
             <td>{{ $contact->last_name }} {{ $contact->first_name }}</td>
-
-            <td>
-              @if($contact->gender == 1)
-                男性
-              @elseif($contact->gender == 2)
-                女性
-              @else
-                その他
-              @endif
-            </td>
-
+            <td>{{ $genderLabel }}</td>
             <td>{{ $contact->email }}</td>
-
             <td>{{ $contact->category->content ?? '' }}</td>
-
             <td>
               <button
                 type="button"
@@ -103,7 +94,7 @@
           </tr>
         @empty
           <tr>
-            <td colspan="5" style="text-align:center; padding: 20px;">
+            <td colspan="5" class="empty-row">
               該当するデータがありません
             </td>
           </tr>
@@ -115,74 +106,46 @@
           Modals
     ========================== -->
     @foreach($contacts as $contact)
+      @php
+        $genderLabel = $contact->gender == 1 ? '男性' : ($contact->gender == 2 ? '女性' : 'その他');
+
+        $rows = [
+          'お名前' => $contact->last_name.' '.$contact->first_name,
+          '性別' => $genderLabel,
+          'メールアドレス' => $contact->email,
+          '電話番号' => $contact->tel ?? '',
+          '住所' => $contact->address ?? '',
+          '建物名' => $contact->building ?? '',
+          'お問い合わせの種類' => $contact->category->content ?? '',
+          'お問い合わせ内容' => $contact->detail ?? '',
+        ];
+      @endphp
+
       <div class="modal-overlay js-modal" id="modal-{{ $contact->id }}" aria-hidden="true">
         <div class="modal-content" role="dialog" aria-modal="true">
-          <button
-            type="button"
-            class="modal-close js-close-modal"
-            aria-label="閉じる"
-          >
-            ×
-          </button>
+          <button type="button" class="modal-close js-close-modal" aria-label="閉じる">×</button>
 
           <h2 class="modal-title">FashionablyLate</h2>
 
           <div class="modal-body">
-            <div class="modal-row">
-              <div class="modal-label">お名前</div>
-              <div class="modal-value">
-                {{ $contact->last_name }} {{ $contact->first_name }}
+            @foreach($rows as $label => $value)
+              <div class="modal-row">
+                <div class="modal-label">{{ $label }}</div>
+                <div class="modal-value">{{ $value }}</div>
               </div>
-            </div>
-
-            <div class="modal-row">
-              <div class="modal-label">性別</div>
-              <div class="modal-value">
-                @if($contact->gender == 1)
-                  男性
-                @elseif($contact->gender == 2)
-                  女性
-                @else
-                  その他
-                @endif
-              </div>
-            </div>
-
-            <div class="modal-row">
-              <div class="modal-label">メールアドレス</div>
-              <div class="modal-value">{{ $contact->email }}</div>
-            </div>
-
-            <div class="modal-row">
-              <div class="modal-label">電話番号</div>
-              <div class="modal-value">{{ $contact->tel ?? '' }}</div>
-            </div>
-
-            <div class="modal-row">
-              <div class="modal-label">住所</div>
-              <div class="modal-value">{{ $contact->address ?? '' }}</div>
-            </div>
-
-            <div class="modal-row">
-              <div class="modal-label">建物名</div>
-              <div class="modal-value">{{ $contact->building ?? '' }}</div>
-            </div>
-
-            <div class="modal-row">
-              <div class="modal-label">お問い合わせの種類</div>
-              <div class="modal-value">
-                {{ $contact->category->content ?? '' }}
-              </div>
-            </div>
-
-            <div class="modal-row">
-              <div class="modal-label">お問い合わせ内容</div>
-              <div class="modal-value">{{ $contact->detail ?? '' }}</div>
-            </div>
+            @endforeach
           </div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn-delete" disabled>削除</button>
+          <div class="modal-footer" onclick="event.stopPropagation();">
+            <form
+              action="{{ route('admin.destroy', $contact->id) }}"
+              method="POST"
+              onsubmit="return confirm('本当に削除しますか？')"
+            >
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn-delete">削除</button>
+            </form>
           </div>
         </div>
       </div>
@@ -194,46 +157,41 @@
     <div class="pagination">
       {{ $contacts->links() }}
     </div>
-
   </main>
 
   <!-- =========================
         Modal Script
   ========================== -->
   <script>
-    // 開く
+    const openModal = (modal) => {
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+    };
+
+    const closeModal = (modal) => {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+    };
+
     document.querySelectorAll('.js-open-modal').forEach(btn => {
       btn.addEventListener('click', () => {
-        const id = btn.dataset.modal;
-        const modal = document.getElementById(id);
-        if (!modal) return;
-
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
+        const modal = document.getElementById(btn.dataset.modal);
+        if (modal) openModal(modal);
       });
     });
 
-    // 閉じる（×）
     document.querySelectorAll('.js-close-modal').forEach(btn => {
       btn.addEventListener('click', () => {
         const modal = btn.closest('.js-modal');
-        if (!modal) return;
-
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
+        if (modal) closeModal(modal);
       });
     });
 
-    // 背景クリックで閉じる
     document.querySelectorAll('.js-modal').forEach(modal => {
       modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.remove('is-open');
-          modal.setAttribute('aria-hidden', 'true');
-        }
+        if (e.target === modal) closeModal(modal);
       });
     });
   </script>
-
 </body>
 </html>
