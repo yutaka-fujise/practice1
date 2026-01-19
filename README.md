@@ -44,7 +44,11 @@ mysql:
 ```
 
 3.環境ファイル作成
-「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.env ファイルを作成 4. .env に以下の環境変数を追加
+
+```bash
+cp .env.example .env
+```
+4. .env に以下の環境変数を追加
 
 ```text
 DB_CONNECTION=mysql
